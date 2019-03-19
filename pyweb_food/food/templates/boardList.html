@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>식당 목록</title>
+
+<style>
+body {
+	background-color: #3d4045;
+}
+table {
+	background-color: white;
+}
+.textSmall {
+	font-size: small;
+}
+.shopName {
+	font-size: 20px;
+}
+td {
+	padding: 0px 10px 70px 10px;
+}
+.hashTag a {
+	color: deepskyblue;
+	text-decoration: none;
+}
+.contents {
+	line-height: 1.5;
+}
+.images {
+	padding-bottom: 10px;
+}
+</style>
+
+</head>
+<body>
+	<h1>식당 목록</h1>
+	
+	<table>
+	{% for row in food_list %}
+	<tr>
+		<td>
+			<div class="images"><img src="{{row.shop_img}}" width="420px" height="312px"></div>
+			<div class="contents">
+				<div class="textSmall">{{ restrn_type|get_item:row.restaurant_type }}</div>
+				<div class="shopName">{{ row.shop_nm }}</div>
+				<div>
+					<img src="http://downloadicons.net/sites/default/files/yellow-star-icon-14289.png" width="20px" />
+					<img src="http://downloadicons.net/sites/default/files/yellow-star-icon-14289.png" width="20px" />
+					<img src="http://downloadicons.net/sites/default/files/yellow-star-icon-14289.png" width="20px" />
+					<img src="http://downloadicons.net/sites/default/files/yellow-star-icon-14289.png" width="20px" />
+					<img src="http://downloadicons.net/sites/default/files/yellow-star-icon-14289.png" width="20px" />
+				</div>
+				<span class="hashTag textSmall">
+					{% with row.hash_tag|split:"#" as tags %}
+				        {% for tag in tags %}
+				            {% if tag != '' %}
+				            	<a href="#">#{{ tag }}</a>&nbsp;
+			            	{% endif %}
+				        {% endfor %}
+				    {% endwith %}
+				</span>
+			</div>
+		</td>
+		</td>
+	</tr>
+	{% endfor %}
+	</table>
+</body>
+</html>
